@@ -1,0 +1,148 @@
+<app-navbar-component></app-navbar-component>
+
+<!-- Global Time Slot Selection -->
+<div class="container my-4">
+  <div class="row align-items-center">
+    <div class="col-md-4 offset-md-4">
+      <label class="form-label fw-semibold">Select Time Slot</label>
+      <select class="form-select" [(ngModel)]="selectedGlobalSlotId">
+        <option [ngValue]="null" disabled>Select Time Slot</option>
+        <option *ngFor="let slot of timeSlot" [ngValue]="slot.sloT_ID">
+          {{ slot.timeslot }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mt-2" *ngIf="selectedGlobalSlotId">
+    <div class="col-md-4 offset-md-4 text-center">
+      <div class="text-muted small">
+        Used: {{ getUsedSplitMinutes(user.functions[0]) }} / 59 min
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid px-3 py-3" *ngIf="selectedGlobalSlotId">
+  <div class="row bg-primary text-white fw-semibold text-center py-2 rounded-top shadow-sm">
+    <div class="col-md-2">Function</div>
+    <div class="col-md-2">Project</div>
+    <div class="col-md-2">Time Slot</div>
+    <div class="col-md-2">Option</div>
+    <div class="col-md-1">Split</div>
+    <div class="col-md-1">Module</div>
+    <div class="col-md-1">Desc</div>
+    <div class="col-md-1">Action</div>
+  </div>
+
+  <div class="row align-items-center border-bottom border-light py-3 bg-white shadow-sm mb-2 rounded"
+    *ngFor="let fn of user.functions">
+
+    <!-- Function Name -->
+    <div class="col-md-2 text-center" *ngIf="fn.fuN_NAME">
+      <button class="btn btn-success w-100 fw-semibold text-truncate" [ngClass]="{
+            'btn-success': selectedFunctionId === fn.fuN_ID,
+            'btn-info': selectedFunctionId !== fn.fuN_ID
+          }" (click)="onFunctionClick(fn)">
+        {{ fn.fuN_NAME }}
+      </button>
+    </div>
+
+
+    <!-- Project Dropdown -->
+    <div class="col-md-2">
+      <select class="form-select" [(ngModel)]="fn.selectedProjectId">
+        <option [ngValue]="null" disabled>Select Project</option>
+        <option *ngFor="let proj of project" [ngValue]="proj.projId">
+          {{ proj.projName }} (Client: {{ proj.clientId }})
+        </option>
+      </select>
+    </div>
+
+
+    <!-- Time Slot Dropdown -->
+    <!-- Use Global Time Slot -->
+    <div class="col-md-2 text-center">
+      <div class="text-muted small">
+        {{ getSlotLabel(selectedGlobalSlotId) || 'No slot selected' }}
+      </div>
+
+      <ng-container *ngIf="selectedGlobalSlotId">
+        <ng-container *ngIf="getUsedSplitMinutes(fn) as usedMinutes">
+          <small class="text-muted d-block mt-1">
+            Used: {{ usedMinutes }} / 60 min
+            <span *ngIf="fn.timeType === 'split' && fn.selectedDuration">
+              | Current: +{{ fn.selectedDuration }} min
+            </span>
+          </small>
+        </ng-container>
+      </ng-container>
+    </div>
+
+
+
+    <!-- Full / Split Option -->
+    <div class="col-md-2 d-flex justify-content-center gap-3">
+      <div class="form-check form-switch">
+        <input type="radio" class="form-check-input" name="timeOption_{{ fn.fuN_ID }}" [(ngModel)]="fn.timeType"
+          [value]="'full'" id="full_{{ fn.fuN_ID }}" (change)="onTimeTypeChange(fn)">
+        <label class="form-check-label" for="full_{{ fn.fuN_ID }}">Full</label>
+      </div>
+      <div class="form-check form-switch">
+        <input type="radio" class="form-check-input" name="timeOption_{{ fn.fuN_ID }}" [(ngModel)]="fn.timeType"
+          [value]="'split'" id="split_{{ fn.fuN_ID }}" (change)="onTimeTypeChange(fn)">
+        <label class="form-check-label" for="split_{{ fn.fuN_ID }}">Split</label>
+      </div>
+    </div>
+
+
+    <!-- Duration Dropdown for Split -->
+    <div class="col-md-1">
+
+
+
+      <ng-container *ngIf="fn.timeType === 'split'; else fullTimeMsg">
+        <select class="form-select" [(ngModel)]="fn.selectedDuration">
+          <option [ngValue]="null" disabled>Select Duration</option>
+          <option *ngFor="let duration of getAvailableSplitDurations(fn)" [ngValue]="duration">
+            {{ duration }} min
+          </option>
+          <!-- यदि getAvailableSplitDurations(fn) खाली है, तो संदेश दिखाएँ -->
+          <option *ngIf="getAvailableSplitDurations(fn).length === 0" disabled>No available durations</option>
+        </select>
+      </ng-container>
+
+
+
+
+      <ng-template #fullTimeMsg>
+        <div class="text-center text-muted small">Full</div>
+      </ng-template>
+    </div>
+
+
+    <!-- Module Dropdown -->
+    <div class="col-md-1">
+      <select class="form-select" [(ngModel)]="fn.selectedModuleId">
+        <option [ngValue]="null" disabled>Select</option>
+        <option *ngFor="let mod of functionModules[fn.fuN_ID] " [ngValue]="mod.moD_ID">
+          {{ mod.moD_NAME }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Description -->
+    <div class="col-md-1">
+      <textarea [(ngModel)]="fn.timesheetDesc" class="form-control" rows="3" placeholder="Enter remarks..."></textarea>
+    </div>
+
+    <!-- Action Button -->
+    <div class="col-md-1 text-center">
+      <button class="btn btn-success btn-sm px-3" (click)="submitRow(fn)">
+        Add
+      </button>
+    </div>
+  </div>
+</div>
+

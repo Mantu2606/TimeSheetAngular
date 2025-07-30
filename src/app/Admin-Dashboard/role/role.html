@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h4 class="text-center mb-4">All Roles</h4>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Created By</th>
+          <th>Created Date</th>
+          <th>Updated By</th>
+          <th>Updated Date</th>
+          <th>Active</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roleslist">
+          <td>{{ role.roleId }}</td>
+          <td>{{ role.roleCode }}</td>
+          <td>{{ role.roleName }}</td>
+          <td>{{ role.createdBy || 'N/A' }}</td>
+          <td>{{ role.createdDate | date: 'short' }}</td>
+          <td>{{ role.updatedBy || 'N/A' }}</td>
+          <td>{{ role.updatedDate ? (role.updatedDate | date: 'short') : 'N/A' }}</td>
+          <td>
+            <span class="badge" [ngClass]="role.isActive ? 'bg-success' : 'bg-danger'">
+              {{ role.isActive ? 'Yes' : 'No' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" (click)="editRole(role.roleId)">Edit</button>
+              </td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="deleteRole(role.roleId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success text-center mt-3">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger text-center mt-3">
+    {{ errorMessage }}
+  </div>
+</div>

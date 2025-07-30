@@ -1,0 +1,50 @@
+<div class="card p-3 mb-4">
+    <h5>Update Function</h5>
+
+    <form [formGroup]="functionForm" (ngSubmit)="submitFunction()">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label>Role</label>
+                <select class="form-select" formControlName="rolE_ID">
+                    <option value="">-- Select Role --</option>
+                    <option *ngFor="let role of roleslist" [value]="role.roleId">
+                        {{ role.roleName }}
+                    </option>
+                </select>
+
+            </div>
+
+            <div class="col-md-4">
+                <label>Function Code</label>
+                <input type="text" class="form-control" formControlName="fuN_CODE">
+            </div>
+
+            <div class="col-md-4">
+                <label>Function Name</label>
+                <input type="text" class="form-control" formControlName="fuN_NAME">
+            </div>
+
+            <div class="col-md-4">
+                <label>Updated By</label>
+                <input type="text" class="form-control" formControlName="updateD_BY">
+            </div>
+
+            <div class="col-md-4">
+                <label>Is Active</label>
+                <select class="form-select" formControlName="iS_ACTIVE">
+                    <option [value]="true">Yes</option>
+                    <option [value]="false">No</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary" [disabled]="functionForm.invalid || isLoading">
+                Update Function
+            </button>
+            <button type="button" class="btn btn-secondary ms-2" (click)="cancelEdit()">
+                Cancel
+            </button>
+        </div>
+    </form>
+</div>

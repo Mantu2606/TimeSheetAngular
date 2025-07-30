@@ -1,0 +1,38 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Timeslot</th>
+                <th>Created By</th>
+                <th>Created Date</th>
+                <th>Updated By</th>
+                <th>Updated Date</th>
+                <th>Active?</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let slot of timeslots; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ slot.timeslot }}</td>
+                <td>{{ slot.createD_BY }}</td>
+                <td>{{ slot.createD_DATE | date:'short' }}</td>
+                <td>{{ slot.updateD_BY || '—' }}</td>
+                <td>{{ slot.updateD_DATE ? (slot.updateD_DATE | date:'short') : '—' }}</td>
+                <td>
+                    <span class="badge bg-success" *ngIf="slot.iS_ACTIVE">Yes</span>
+                    <span class="badge bg-danger" *ngIf="!slot.iS_ACTIVE">No</span>
+                </td>
+                <td>
+
+                    <button class="btn btn-warning btn-sm me-2" (click)="onEditClick(slot)">Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="deleteSlot(slot.sloT_ID!)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

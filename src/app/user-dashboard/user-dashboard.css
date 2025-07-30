@@ -1,0 +1,27 @@
+body {
+  background-color: #f6f9fc;
+}
+
+select.form-select,
+input.form-control {
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.btn-success {
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 6px;
+}
+
+.form-check-label {
+  font-size: 0.9rem;
+}
+
+.row.shadow-sm {
+  transition: all 0.2s ease-in-out;
+}
+
+.row.shadow-sm:hover {
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.15);
+}

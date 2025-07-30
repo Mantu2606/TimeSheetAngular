@@ -1,0 +1,28 @@
+<!-- update-client.component.html -->
+<div class="container mt-4">
+  <h3>Update Client</h3>
+
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" class="mt-3">
+    <div class="mb-3">
+      <label for="clienT_Id" class="form-label">Client ID</label>
+      <input type="number" id="clienT_Id" class="form-control" formControlName="clienT_Id" readonly>
+    </div>
+
+    <div class="mb-3">
+      <label for="clienT_CODE" class="form-label">Client Code</label>
+      <input type="text" id="clienT_CODE" class="form-control" formControlName="clienT_CODE">
+    </div>
+
+    <div class="mb-3">
+      <label for="clienT_NAME" class="form-label">Client Name</label>
+      <input type="text" id="clienT_NAME" class="form-control" formControlName="clienT_NAME">
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" id="iS_ACTIVE" class="form-check-input" formControlName="iS_ACTIVE">
+      <label class="form-check-label" for="iS_ACTIVE">Is Active</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="clientForm.invalid">Update Client</button>
+  </form>
+</div>

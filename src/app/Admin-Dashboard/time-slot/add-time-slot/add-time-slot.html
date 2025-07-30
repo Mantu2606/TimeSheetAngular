@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <h4 class="text-center text-primary mb-3">Manage Timeslots</h4>
+
+  <form [formGroup]="slotForm" (ngSubmit)="onSubmit()" class="row g-3 mb-4">
+    <div class="col-md-5">
+      <label>Timeslot</label>
+      <input formControlName="timeslot" class="form-control" placeholder="e.g. 09:00 AM - 10:00 AM" />
+      <div *ngIf="slotForm.get('timeslot')?.invalid && slotForm.get('timeslot')?.touched" class="text-danger">
+        Required
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label>Created By</label>
+      <input formControlName="createdBy" class="form-control" placeholder="Your name" />
+      <div *ngIf="slotForm.get('createdBy')?.invalid && slotForm.get('createdBy')?.touched" class="text-danger">
+        Required
+      </div>
+    </div>
+
+    <div class="col-md-2 form-check mt-4">
+      <input type="checkbox" formControlName="isActive" class="form-check-input" />
+      <label class="form-check-label">Active?</label>
+    </div>
+
+    <div class="col-md-1 d-flex align-items-end">
+      <button type="submit" class="btn btn-primary" [disabled]="slotForm.invalid">Add</button>
+    </div>
+  </form>
+
+  <div *ngIf="loading" class="alert alert-info">Loading...</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div *ngIf="!loading && !error" class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th><th>Timeslot</th><th>Created By</th><th>Created Date</th><th>Active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let slot of timeslots; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ slot.timeslot }}</td>
+          <td>{{ slot.createD_BY }}</td>
+          <td>{{ slot.createD_DATE | date:'short' }}</td>
+          <td>
+            <span class="badge bg-success" *ngIf="slot.iS_ACTIVE">Yes</span>
+            <span class="badge bg-danger" *ngIf="!slot.iS_ACTIVE">No</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <h4 class="text-center mb-4">Edit Project</h4>
+
+  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="bg-white p-4 shadow rounded">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label>Client Name</label>
+        <!-- <input type="number" class="form-control" formControlName="clientId"> -->
+        <select class="form-select" formControlName="clientId">
+                    <option value="">-- Select Client --</option>
+                    <option *ngFor="let client of clients" [value]="client.clienT_Id">
+                        {{ client.clienT_NAME }}
+                    </option>
+                </select>
+
+      </div>
+
+      <div class="col-md-6">
+        <label>Project Code</label>
+        <input type="text" class="form-control" formControlName="projCode">
+      </div>
+
+      <div class="col-md-6">
+        <label>Project Name</label>
+        <input type="text" class="form-control" formControlName="projName">
+      </div>
+
+      <div class="col-md-6">
+        <label>Project Description</label>
+        <textarea class="form-control" rows="3" formControlName="projDesc"></textarea>
+      </div>
+
+      <div class="col-md-6">
+        <label>Is Active</label>
+        <select class="form-select" formControlName="isActive">
+          <option [value]="true">Yes</option>
+          <option [value]="false">No</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-primary" type="submit" [disabled]="projectForm.invalid">Update Project</button>
+    </div>
+
+    <div *ngIf="successMessage" class="alert alert-success mt-3 text-center">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3 text-center">{{ errorMessage }}</div>
+  </form>
+</div>

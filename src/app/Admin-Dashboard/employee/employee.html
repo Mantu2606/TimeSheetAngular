@@ -1,0 +1,39 @@
+<p>employee works!</p>
+<div class="table-responsive">
+  <table class="table table-light table-striped table-hover align-middle text-center">
+    <thead class="table-light text-dark">
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile No</th>
+        <th>Role</th>
+        <th>Active</th>
+        <th>Manager</th>
+        <th>Last Login</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.empCode }}</td>
+        <td>{{ emp.empName }}</td>
+        <td>{{ emp.empEmailId }}</td>
+        <td>{{ emp.empMobileNo }}</td>
+        <td>{{ emp.roleId }}</td>
+        <td>
+          <span class="badge" [ngClass]="emp.isActive ? 'bg-success' : 'bg-danger'">
+            {{ emp.isActive ? 'Yes' : 'No' }}
+          </span>
+        </td>
+        <td>{{ emp.lineManagerEmailId || 'N/A' }}</td>
+        <td>{{ emp.empLastLogin ? (emp.empLastLogin | date:'short') : 'Never' }}</td>
+        <td><button class="btn btn-warning btn-sm" (click)="edit(emp)">Edit</button></td>
+        <td><button class="btn btn-danger btn-sm" (click)="deleteEmployee(emp.empId)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    
+<app-edit-employee *ngIf="showEditForm" [selectedEmployee]="selectedEmployee"></app-edit-employee>

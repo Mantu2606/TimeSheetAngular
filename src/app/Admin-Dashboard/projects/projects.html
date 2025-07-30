@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h4 class="text-center mb-4">Projects List</h4>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">{{ errorMessage }}</div>
+
+  <div class="table-responsive bg-white rounded shadow-sm p-3">
+    <table class="table table-bordered table-striped table-hover text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Client Name</th>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Created By</th>
+          <th>Created Date</th>
+          <th>Updated By</th>
+          <th>Updated Date</th>
+          <th>Status</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proj of projects">
+          <td>{{ proj.projId }}</td>
+          <td>{{ proj.clientName }}</td>
+          <td>{{ proj.projCode }}</td>
+          <td>{{ proj.projName }}</td>
+          <td>{{ proj.projDesc || '—' }}</td>
+          <td>{{ proj.createdBy || '—' }}</td>
+          <td>{{ proj.createdDate ? (proj.createdDate | date: 'short') : '—' }}</td>
+          <td>{{ proj.updatedBy || '—' }}</td>
+          <td>{{ proj.updatedDate ? (proj.updatedDate | date: 'short') : '—' }}</td>
+          <td>
+            <span class="badge" [ngClass]="proj.isActive ? 'bg-success' : 'bg-danger'">
+              {{ proj.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="editProject(proj.projId)">Edit</button>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="deleteProject(proj.projId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

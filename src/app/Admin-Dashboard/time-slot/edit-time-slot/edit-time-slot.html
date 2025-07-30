@@ -1,0 +1,29 @@
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr><th>#</th><th>Timeslot</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let slot of timeslots; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <ng-container *ngIf="editingSlotId !== slot.sloT_ID; else editTpl">
+            {{ slot.timeslot }}
+          </ng-container>
+          <ng-template #editTpl>
+            <input [(ngModel)]="editedTimeslot" class="form-control"/>
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="editingSlotId === slot.sloT_ID; else viewBtns">
+            <button class="btn btn-success btn-sm mx-3" (click)="saveEdit()">Save</button>
+            <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+          </ng-container>
+          <ng-template #viewBtns>
+            <button class="btn btn-warning btn-sm" (click)="onEditClick(slot)">Edit</button>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

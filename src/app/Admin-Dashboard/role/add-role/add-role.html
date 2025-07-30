@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h4 class="text-center mb-4">Add New Role</h4>
+
+  <form [formGroup]="roleForm" (ngSubmit)="onSubmit()" class="bg-light p-4 rounded shadow">
+    <div class="mb-3">
+      <label>Role Code</label>
+      <input type="text" class="form-control" formControlName="roleCode" />
+    </div>
+
+    <div class="mb-3">
+      <label>Role Name</label>
+      <input type="text" class="form-control" formControlName="roleName" />
+    </div>
+
+    <div class="mb-3">
+      <label>Is Active</label>
+      <select class="form-select" formControlName="isActive">
+        <option [value]="true">Yes</option>
+        <option [value]="false">No</option>
+      </select>
+    </div>
+
+    <div class="text-center mt-3">
+      <button type="submit" class="btn btn-success" [disabled]="roleForm.invalid">Add Role</button>
+      <a routerLink="/admin/roles" class="btn btn-secondary ms-2">Cancel</a>
+    </div>
+
+    <div *ngIf="successMessage" class="alert alert-success text-center mt-3">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger text-center mt-3">{{ errorMessage }}</div>
+  </form>
+</div>

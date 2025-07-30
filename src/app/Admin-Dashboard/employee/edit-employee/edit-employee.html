@@ -1,0 +1,56 @@
+
+<div class="container mt-4">
+  <h4 class="text-center">Edit Employee</h4>
+
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="row g-3 shadow p-4 bg-light rounded">
+
+    <div class="col-md-6">
+      <label for="empName" class="form-label">Name</label>
+      <input type="text" id="empName" formControlName="empName" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="empEmailId" class="form-label">Email</label>
+      <input type="email" id="empEmailId" formControlName="empEmailId" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="empMobileNo" class="form-label">Mobile No</label>
+      <input type="text" id="empMobileNo" formControlName="empMobileNo" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="empCode" class="form-label">Code</label>
+      <input type="text" id="empCode" formControlName="empCode" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="roleId" class="form-label">Role ID</label>
+      <input type="number" id="roleId" formControlName="roleId" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="empPassword" class="form-label">Password</label>
+      <input type="password" id="empPassword" formControlName="empPassword" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="lineManagerId" class="form-label">Line Manager ID</label>
+      <input type="number" id="lineManagerId" formControlName="lineManagerId" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="lineManagerEmailId" class="form-label">Line Manager Email</label>
+      <input type="email" id="lineManagerEmailId" formControlName="lineManagerEmailId" class="form-control" />
+    </div>
+
+    <div class="col-md-6 form-check mt-4">
+      <input type="checkbox" class="form-check-input" id="isActive" formControlName="isActive" />
+      <label class="form-check-label" for="isActive">Active</label>
+    </div>
+
+    <div class="col-12 text-center mt-3">
+      <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Update</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,124 @@
+<div class="container-fluid py-4">
+  <!-- Admin Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 rounded">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">Admin Panel - Timesheet</a>
+      <div class="text-white">
+        <i class="bi bi-person-circle me-2"></i> Welcome, Admin
+      </div>
+    </div>
+  </nav>
+
+  <!-- Admin Dashboard Content -->
+  <div class="row">
+    <div class="col-md-2">
+      <div class="list-group">
+
+        <!-- Employees -->
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          data-bs-toggle="collapse" href="#collapseEmployees" role="button" aria-expanded="false"
+          aria-controls="collapseEmployees">
+          Manage Employees
+          <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="collapse " id="collapseEmployees">
+          <a class="list-group-item list-group-item-action" routerLink="/admin/employees">View All Employees</a>
+          <a class="list-group-item list-group-item-action" routerLink="/admin/employees/add">Add Employee</a>
+        </div>
+
+        <!-- Projects -->
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          data-bs-toggle="collapse" href="#collapseProjects" role="button" aria-expanded="false"
+          aria-controls="collapseProjects">
+          Manage Projects
+          <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="collapse " id="collapseProjects">
+          <a class="list-group-item list-group-item-action" routerLink="/admin/projects">View All Projects</a>
+          <a class="list-group-item list-group-item-action" routerLink="/admin/projects/add">Add Project</a>
+        </div>
+
+        <!-- functions -->
+         <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          data-bs-toggle="collapse" href="#collapseFunctions" role="button" aria-expanded="false"
+          aria-controls="collapseFunctions">
+          Manage Functions
+          <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="collapse " id="collapseFunctions">
+          <a class="list-group-item list-group-item-action" routerLink="/admin/functions">View All Functions</a>
+          <a class="list-group-item list-group-item-action" routerLink="/admin/functions/add">Add Functions</a>
+        </div>
+
+        <!-- Roles -->
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          data-bs-toggle="collapse" href="#collapseRoles" role="button" aria-expanded="false"
+          aria-controls="collapseRoles">
+          View Roles
+          <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="collapse" id="collapseRoles">
+          <a class="list-group-item list-group-item-action" routerLink="/admin/roles">View All Roles</a>
+          <a class="list-group-item list-group-item-action" routerLink="/admin/roles/add">Add Role</a>
+        </div>
+
+        <!-- Clients -->
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          data-bs-toggle="collapse" href="#collapseClients" role="button" aria-expanded="false"
+          aria-controls="collapseClients">
+          Manage Clients
+          <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="collapse " id="collapseClients">
+          <a class="list-group-item list-group-item-action" routerLink="/admin/clients">View All Clients</a>
+          <a class="list-group-item list-group-item-action" routerLink="/admin/clients/add">Add Client</a>
+        </div>
+
+        <!-- Modules -->
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          data-bs-toggle="collapse" href="#collapseModules" role="button" aria-expanded="false"
+          aria-controls="collapseModules">
+          Manage Modules
+          <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="collapse " id="collapseModules">
+          <a class="list-group-item list-group-item-action" routerLink="/admin/modules">View All Modules</a>
+          <a class="list-group-item list-group-item-action" routerLink="/admin/modules/add">Add Module</a>
+        </div>
+
+        <!-- Timeslots -->
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          data-bs-toggle="collapse" href="#collapseTimeslots" role="button" aria-expanded="false"
+          aria-controls="collapseTimeslots">
+          View Timeslots
+          <i class="bi bi-chevron-down"></i>
+        </a>
+        <div class="collapse " id="collapseTimeslots">
+          <a class="list-group-item list-group-item-action" routerLink="/admin/timeslots">View All Timeslots</a>
+          <a class="list-group-item list-group-item-action" routerLink="/admin/timeslots/add">Add Timeslot</a>
+        </div>
+
+        <!-- Timesheets -->
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          data-bs-toggle="collapse" href="#collapseTimesheets" role="button" aria-expanded="false"
+          aria-controls="collapseTimesheets" routerLink="/admin/timesheets">
+          Timesheets
+          <i class="bi bi-chevron-down"></i>
+        </a>
+        <!-- <div class="collapse " id="collapseTimesheets">
+          <a class="list-group-item list-group-item-action" routerLink="/admin/timesheets">View All Timesheets</a>
+          <a class="list-group-item list-group-item-action" routerLink="/admin/timesheets/add">Add Timesheet</a>
+        </div> -->
+
+      </div>
+
+
+      <div class="text-center mt-3">
+        <button class="btn btn-danger">Logout</button>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

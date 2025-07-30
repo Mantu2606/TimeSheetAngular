@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h4>Add New Client</h4>
+
+  <form [formGroup]="clientForm" (ngSubmit)="onAddClient()" class="mb-3">
+    <div class="mb-3">
+      <label for="clientCode" class="form-label">Client Code</label>
+      <input type="text" id="clientCode" class="form-control" formControlName="CLIENT_CODE" />
+      <div *ngIf="clientForm.get('CLIENT_CODE')?.invalid && clientForm.get('CLIENT_CODE')?.touched" class="text-danger">
+        Client Code is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="clientName" class="form-label">Client Name</label>
+      <input type="text" id="clientName" class="form-control" formControlName="CLIENT_NAME" />
+      <div *ngIf="clientForm.get('CLIENT_NAME')?.invalid && clientForm.get('CLIENT_NAME')?.touched" class="text-danger">
+        Client Name is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="createdBy" class="form-label">Created By</label>
+      <input type="text" id="createdBy" class="form-control" formControlName="CREATED_BY" />
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" id="isActive" class="form-check-input" formControlName="IS_ACTIVE" />
+      <label for="isActive" class="form-check-label">Is Active</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="clientForm.invalid">Add Client</button>
+  </form>
+
+  <div *ngIf="message" class="alert alert-info">
+    {{ message }}
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container mt-4">
+    <h4 class="text-center mb-3">Client List</h4>
+
+    <div *ngIf="errorMessage" class="alert alert-danger text-center">{{ errorMessage }}</div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Created By</th>
+                    <th>Created Date</th>
+                    <th>Updated By</th>
+                    <th>Updated Date</th>
+                    <th>Is Active</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients">
+                    <td>{{ client.clienT_Id }}</td>
+                    <td>{{ client.clienT_CODE }}</td>
+                    <td>{{ client.clienT_NAME }}</td>
+                    <td>{{ client.createD_BY || 'N/A' }}</td>
+                    <td>{{ client.createD_DATE | date: 'short' }}</td>
+                    <td>{{ client.updateD_BY || 'N/A' }}</td>
+                    <td>{{ client.updateD_DATE | date: 'short' }}</td>
+                    <td>
+                        <span class="badge" [ngClass]="client.iS_ACTIVE ? 'bg-success' : 'bg-danger'">
+                            {{ client.iS_ACTIVE ? 'Yes' : 'No' }}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="editClient(client.clienT_Id)">Edit</button>
+
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" (click)="deleteClient(client.clienT_Id)">Delete</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<div *ngIf="message" class="alert alert-info mt-2">
+  {{ message }}
+</div>
